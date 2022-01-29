@@ -1,4 +1,4 @@
-#Fri Jan 28 20:36:17 IST 2022
+#Sat Jan 29 16:24:45 IST 2022
 base.0=D\:\\Flutter projects\\bmi-calculator-flutter-master\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
