@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-const cardTextStyle = TextStyle(
-  fontSize: 18,
-  fontWeight: FontWeight.bold,
-  color: Color(0xFF8D8E98),
-);
+import 'constants.dart';
+
 const iconSize = 80.0;
 
 class CardIconText extends StatelessWidget {
@@ -24,7 +21,7 @@ class CardIconText extends StatelessWidget {
         SizedBox(height: 15.0),
         Text(
           cardText,
-          style: cardTextStyle,
+          style: kCardTextStyle,
         )
       ],
     );

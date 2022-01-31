@@ -3,11 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'CardIconText.dart';
 import 'MyCard.dart';
-
-const bottomContainerHeight = 70.0;
-const ActiveCardColor = Color(0xFF1D1E33);
-const InactiveCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
+import 'constants.dart';
 
 enum Gender {
   male,
@@ -30,44 +26,43 @@ class _InputPageState extends State<InputPage> {
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          SelectedGender = Gender.male;
-                        });
+                    child: MyCard(
+                      onPress: () {
+                        setState(
+                          () {
+                            SelectedGender = Gender.male;
+                          },
+                        );
                       },
-                      child: MyCard(
-                        colour: SelectedGender == Gender.male
-                            ? ActiveCardColor
-                            : InactiveCardColor,
-                        cardChild: CardIconText(
-                          cardIcon: FontAwesomeIcons.mars,
-                          cardText: "MALE",
-                        ),
+                      colour: SelectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardChild: CardIconText(
+                        cardIcon: FontAwesomeIcons.mars,
+                        cardText: "MALE",
                       ),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: MyCard(
+                      onPress: () {
                         setState(() {
                           SelectedGender = Gender.female;
                         });
                       },
-                      child: MyCard(
-                        colour: SelectedGender == Gender.female
-                            ? ActiveCardColor
-                            : InactiveCardColor,
-                        cardChild: CardIconText(
-                          cardIcon: FontAwesomeIcons.venus,
-                          cardText: "FEMALE",
-                        ),
+                      colour: SelectedGender == Gender.female
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardChild: CardIconText(
+                        cardIcon: FontAwesomeIcons.venus,
+                        cardText: "FEMALE",
                       ),
                     ),
                   ),
@@ -76,7 +71,16 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: MyCard(
-                colour: InactiveCardColor,
+                colour: kInactiveCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "HEIGHT",
+                      style: kCardTextStyle,
+                    )
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -85,20 +89,20 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: MyCard(
-                      colour: InactiveCardColor,
+                      colour: kInactiveCardColor,
                     ),
                   ),
                   Expanded(
                     child: MyCard(
-                      colour: InactiveCardColor,
+                      colour: kInactiveCardColor,
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              color: bottomContainerColor,
-              height: bottomContainerHeight,
+              color: kBottomContainerColor,
+              height: kBottomContainerHeight,
               width: double.infinity,
               margin: EdgeInsets.only(top: 10),
             )
