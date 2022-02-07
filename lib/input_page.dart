@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'CardIconText.dart';
 import 'MyCard.dart';
+import 'Round_icon_button.dart';
 import 'constants.dart';
 
 enum Gender {
@@ -16,8 +17,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender SelectedGender;
+  Gender selectedGender;
   int height = 180;
+  int weight = 70;
+  int age = 15;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,11 +41,11 @@ class _InputPageState extends State<InputPage> {
                       onPress: () {
                         setState(
                           () {
-                            SelectedGender = Gender.male;
+                            selectedGender = Gender.male;
                           },
                         );
                       },
-                      colour: SelectedGender == Gender.male
+                      colour: selectedGender == Gender.male
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: CardIconText(
@@ -55,10 +58,10 @@ class _InputPageState extends State<InputPage> {
                     child: MyCard(
                       onPress: () {
                         setState(() {
-                          SelectedGender = Gender.female;
+                          selectedGender = Gender.female;
                         });
                       },
-                      colour: SelectedGender == Gender.female
+                      colour: selectedGender == Gender.female
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: CardIconText(
@@ -95,17 +98,26 @@ class _InputPageState extends State<InputPage> {
                         ),
                       ],
                     ),
-                    Slider(
-                      value: height.toDouble(),
-                      min: 120,
-                      max: 210,
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                          thumbColor: Color(0xFFEB1555),
+                          activeTrackColor: Colors.white,
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 15),
+                          overlayColor: Color(0x30EB1555),
+                          overlayShape:
+                              RoundSliderOverlayShape(overlayRadius: 30)),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120,
+                        max: 210,
+                        inactiveColor: Color(0xFF8D8E98),
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.round();
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -126,8 +138,32 @@ class _InputPageState extends State<InputPage> {
                             style: kCardTextStyle,
                           ),
                           Text(
-                            "87",
+                            weight.toString(),
                             style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight -= 1;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight += 1;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -144,8 +180,32 @@ class _InputPageState extends State<InputPage> {
                             style: kCardTextStyle,
                           ),
                           Text(
-                            "18",
+                            age.toString(),
                             style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    age -= 1;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    age += 1;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
